@@ -12,9 +12,9 @@ RUN add-apt-repository ppa:deluge-team/ppa && \
 COPY deluge	/deluge
 COPY service 	/etc/service
 
-RUN	mkdir -p /deluge/deluged /deluge/deluge-web /downloads 
-	# adduser -Ss /bin/sh deluge && \
-	# chown -R deluge /deluge /downloads
+RUN	mkdir -p /deluge/deluged /deluge/deluge-web /downloads && \ 
+	useradd -Mr deluge && \
+	chown -R deluge:deluge /deluge /downloads
 
 EXPOSE 8080
 

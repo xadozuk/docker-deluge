@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /usr/bin/deluged -d -c /deluge/deluged --loglevel=info -l /deluge/deluged/deluged.log
+exec /sbin/setuser deluge /usr/bin/deluged -d -c /deluge/deluged --loglevel=info -l /deluge/deluged/deluged.log
