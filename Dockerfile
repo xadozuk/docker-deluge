@@ -9,8 +9,7 @@ RUN add-apt-repository ppa:deluge-team/ppa && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY deluge	/tmp/deluge
-COPY my_init.d 	/etc/my_init.d
+COPY deluge	/deluge
 COPY service 	/etc/service
 
 RUN	mkdir -p /deluge/deluged /deluge/deluge-web /downloads 
