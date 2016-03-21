@@ -1,25 +1,24 @@
-FROM alpine:3.2
+FROM phusion/baseimage
 
 MAINTAINER Xadozuk <xadozuk@gmail.com>
 
-# TODO: http://dev.deluge-torrent.org/changeset/d40dfcd53c243
+RUN add-apt-repository ppa:deluge-team/ppa && \
+    apt-get update && \
+    apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
+    apt-get install -y deluged deluge-webui && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV PACKAGES "supervisor py-enum34 deluge"
+COPY deluge	/tmp/deluge
+COPY my_init.d 	/etc/my_init.d
+COPY service 	/etc/service
 
-RUN apk add --update --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
-	--repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-	$PACKAGES
-
-COPY supervisord.ini /etc/supervisor.d/supervisord.ini
-COPY deluge /deluge
-
-RUN rm -rf /var/cache/apk/* && \
+RUN	mkdir -p /deluge/deluged /deluge/deluge-web /downloads 
 	# adduser -Ss /bin/sh deluge && \
-	mkdir -p /deluge/deluged /deluge/deluge-web /downloads 
 	# chown -R deluge /deluge /downloads
 
 EXPOSE 8080
 
 VOLUME ["/deluge", "/downloads"]
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/sbin/my_init"]
