@@ -1,0 +1,7 @@
+AllowUsers seedbox
+
+Match user seedbox
+    ChrootDirectory     /sftp
+    X11Forwarding       no
+    AllowTcpForwarding  no
+    ForceCommand        internal-sftp
