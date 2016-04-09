@@ -23,7 +23,7 @@ RUN	mkdir -p /deluge/deluged /deluge/deluge-web /sftp/torrents && \
     cat /etc/ssh/sshd_append >> /etc/ssh/sshd_config && \
     rm -f /etc/ssh/sshd_append /etc/service/sshd/down
 
-EXPOSE 22 8080 31000-31010
+EXPOSE 22 8080 31000-31010 31000-31010/udp
 
 VOLUME ["/deluge", "/sftp/torrents"]
 
