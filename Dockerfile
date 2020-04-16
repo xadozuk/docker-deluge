@@ -11,14 +11,14 @@ RUN add-apt-repository ppa:deluge-team/ppa && \
 
 COPY ssh/sshd_append    /etc/ssh/sshd_append
 COPY my_init.d          /etc/my_init.d
-COPY deluge	            /deluge
+COPY deluge	        /deluge
 COPY service 	        /etc/service
 
-RUN	mkdir -p /deluge/deluged /deluge/deluge-web /sftp/torrents && \ 
+RUN mkdir -p /deluge/deluged /deluge/deluge-web /sftp/torrents && \ 
     chmod 755 /sftp && \
     ln -s /sftp/torrents /downloads && \ 
-	useradd -Mr seedbox && \
-	chown -R seedbox:seedbox /deluge /sftp/torrents && \
+    useradd -Mr seedbox && \
+    chown -R seedbox:seedbox /deluge /sftp/torrents && \
     sed -i "s/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/" /etc/ssh/sshd_config && \
     cat /etc/ssh/sshd_append >> /etc/ssh/sshd_config && \
     rm -f /etc/ssh/sshd_append /etc/service/sshd/down
