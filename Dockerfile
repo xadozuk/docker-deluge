@@ -1,8 +1,8 @@
-FROM phusion/baseimage
+FROM phusion/baseimage:latest-amd64
 
 MAINTAINER Xadozuk <xadozuk@gmail.com>
 
-RUN add-apt-repository ppa:deluge-team/ppa && \
+RUN add-apt-repository ppa:deluge-team/stable && \
     apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
     apt-get install -y deluged deluge-webui && \
