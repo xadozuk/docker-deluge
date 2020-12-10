@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /sbin/setuser seedbox /usr/bin/deluge-web -c /deluge/deluge-web -p 8080 --loglevel=info -l /deluge/deluge-web/webui.log
+exec /sbin/setuser seedbox /usr/bin/deluge-web -d -c /deluge/deluge-web -p 8080 --loglevel=info -l /deluge/deluge-web/webui.log
