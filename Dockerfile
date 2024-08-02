@@ -1,6 +1,6 @@
-FROM phusion/baseimage:latest-amd64
+FROM phusion/baseimage:jammy-1.0.4
 
-MAINTAINER Xadozuk <xadozuk@gmail.com>
+LABEL org.opencontainers.image.authors="xadozuk@gmail.com"
 
 RUN add-apt-repository ppa:deluge-team/stable && \
     apt-get update && \
@@ -14,9 +14,9 @@ COPY my_init.d          /etc/my_init.d
 COPY deluge	        /deluge
 COPY service 	        /etc/service
 
-RUN mkdir -p /deluge/deluged /deluge/deluge-web /sftp/torrents && \ 
+RUN mkdir -p /deluge/deluged /deluge/deluge-web /sftp/torrents && \
     chmod 755 /sftp && \
-    ln -s /sftp/torrents /downloads && \ 
+    ln -s /sftp/torrents /downloads && \
     useradd -Mr seedbox && \
     chown -R seedbox:seedbox /deluge /sftp/torrents && \
     sed -i "s/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/" /etc/ssh/sshd_config && \
