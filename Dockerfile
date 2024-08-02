@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.authors="xadozuk@gmail.com"
 RUN add-apt-repository ppa:deluge-team/stable && \
     apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get install -y deluged deluge-webui && \
+    apt-get install -y deluged deluge-web && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
